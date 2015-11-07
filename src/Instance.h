@@ -10,13 +10,15 @@
 
 #include <vector>
 
+using namespace std;
+
 class Instance {
 public:
 	int numItems;
 	int numKnapsacks;
-	std::vector<int> weightList;
-	std::vector<int> profitList;
-	std::vector<int> capacityList;
+	vector<int> weightList;
+	vector<int> profitList;
+	vector<int> capacityList;
 
 	Instance();
 	virtual ~Instance();

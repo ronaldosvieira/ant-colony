@@ -31,3 +31,6 @@
 # Debug files
 *.dSYM/
 /Debug/
+
+# Astah lock file
+*.asta.lock

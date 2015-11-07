@@ -7,9 +7,33 @@
 //============================================================================
 
 #include <iostream>
+#include "Instance.h"
+#include "Solution.h"
 using namespace std;
 
 int main() {
 	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
+	Instance in;
+	in.numItems = 2;
+	in.numKnapsacks = 2;
+
+	in.capacityList.push_back(10);
+	in.capacityList.push_back(10);
+
+	in.profitList.push_back(5);
+	in.profitList.push_back(5);
+
+	in.weightList.push_back(12);
+	in.weightList.push_back(1);
+
+	Solution sol(&in);
+	cout << sol.toString() << endl;
+	sol.update(1, 1);
+	cout << sol.toString() << endl;
+	cout << sol.isValid() << endl;
+
+	cout << in.profitList.at(0) << endl;
+	cout << in.profitList.at(1) << endl;
+
 	return 0;
 }

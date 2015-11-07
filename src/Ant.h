@@ -14,7 +14,7 @@ class Ant {
 private:
 	Solution solution;
 public:
-	Ant();
+	Ant(Instance *inst);
 	virtual ~Ant();
 	Solution get_solution();
 };

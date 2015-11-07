@@ -7,7 +7,7 @@
 
 #include "Ant.h"
 
-Ant::Ant() {
+Ant::Ant(Instance *inst) : solution(inst) {
 	solution.emptySolution();
 }
 

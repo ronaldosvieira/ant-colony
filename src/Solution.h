@@ -9,17 +9,22 @@
 #define SOLUTION_H_
 
 #include <string>
+#include "Instance.h"
 
 using namespace std;
 
 class Solution {
 private:
-	string solution;
-	int num_items;
+	vector<int> solution;
+	Instance *inst;
 public:
-	Solution(Instance instance);
+	Solution(Instance *inst);
 	virtual ~Solution();
 	void emptySolution();
+	void update(int item, int knapsack);
+	long getHeuristicValue();
+	bool isValid();
+	string toString();
 };
 
 #endif /* SOLUTION_H_ */

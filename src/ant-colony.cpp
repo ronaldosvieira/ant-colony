@@ -9,10 +9,10 @@
 #include <iostream>
 #include "Instance.h"
 #include "Solution.h"
+#include "Colony.h"
 using namespace std;
 
 int main() {
-	cout << "!!!Hello World!!!" << endl; // prints !!!Hello World!!!
 	Instance in;
 	in.numItems = 2;
 	in.numKnapsacks = 2;
@@ -26,14 +26,16 @@ int main() {
 	in.weightList.push_back(12);
 	in.weightList.push_back(1);
 
-	Solution sol(&in);
+	//Colony col(1, 1);
+
+	/*Solution sol(&in);
 	cout << sol.toString() << endl;
 	sol.update(1, 1);
 	cout << sol.toString() << endl;
 	cout << sol.isValid() << endl;
 
 	cout << in.profitList.at(0) << endl;
-	cout << in.profitList.at(1) << endl;
+	cout << in.profitList.at(1) << endl;*/
 
 	return 0;
 }

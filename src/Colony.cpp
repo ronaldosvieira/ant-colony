@@ -20,7 +20,7 @@ Colony::~Colony() {
 
 void Colony::populate() {
 	for (int i = 0; i < numAnts; ++i) {
-		ants.push_back(Ant(&inst));
+		//ants.push_back(Ant(&inst));
 	}
 }
 

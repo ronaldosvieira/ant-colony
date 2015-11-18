@@ -8,9 +8,9 @@
 #ifndef COLONY_H_
 #define COLONY_H_
 
-namespace std {
-
 #include "Ant.h"
+
+namespace std {
 
 class Colony {
 private:

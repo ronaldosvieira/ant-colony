@@ -8,6 +8,8 @@
 #ifndef COLONY_H_
 #define COLONY_H_
 
+#include <iostream>
+
 #include "Ant.h"
 
 namespace std {
@@ -19,12 +21,18 @@ private:
 	double alfa;
 	double beta;
 
+	double pheromoneList[];
+
 	vector<Ant> ants;
 	Instance inst;
 
 	void populate();
+	void iterate();
+	vector<long> getSolutionValues();
+	void resetPheromoneList();
 public:
 	Colony(int numAnts, double evaporationRatio, double alfa, double beta);
+	Solution* run();
 	virtual ~Colony();
 };
 

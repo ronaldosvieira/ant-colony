@@ -26,16 +26,18 @@ int main() {
 	in.weightList.push_back(12);
 	in.weightList.push_back(1);
 
-	//Colony col(1, 1);
+	Colony col(1, 1.0, 1.0, 1.0);
 
-	/*Solution sol(&in);
+	Solution sol(&in);
 	cout << sol.toString() << endl;
 	sol.update(1, 1);
 	cout << sol.toString() << endl;
 	cout << sol.isValid() << endl;
 
 	cout << in.profitList.at(0) << endl;
-	cout << in.profitList.at(1) << endl;*/
+	cout << in.profitList.at(1) << endl;
+
+	col.run();
 
 	return 0;
 }

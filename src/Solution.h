@@ -17,13 +17,18 @@ class Solution {
 private:
 	vector<int> solution;
 	Instance *inst;
+
+	vector<int> remainingCapacityList;
 public:
 	Solution(Instance *inst);
 	virtual ~Solution();
 	void emptySolution();
+	bool isValidUpdate(int item, int knapsack);
 	void update(int item, int knapsack);
 	long getHeuristicValue();
+	vector<int> getRemainingCapacityList();
 	bool isValid();
+	bool isSelected(int item);
 	string toString();
 };
 

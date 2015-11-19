@@ -7,8 +7,7 @@
 
 #include "Solution.h"
 
-Solution::Solution(Instance *inst) {
-	this->inst = inst;
+Solution::Solution(Instance *inst) : inst(inst), remainingCapacityList(this->inst->capacityList) {
 	emptySolution();
 }
 
@@ -24,8 +23,18 @@ void Solution::emptySolution() {
 	}
 }
 
+bool Solution::isValidUpdate(int item, int knapsack) {
+	return remainingCapacityList[knapsack] - this->inst->weightList[item] >= 0 &&
+			solution[item] != -1;
+}
+
 void Solution::update(int item, int knapsack) {
 	solution[item] = knapsack;
+	remainingCapacityList[knapsack] -= this->inst->weightList[item];
+}
+
+vector<int> Solution::getRemainingCapacityList() {
+	return this->remainingCapacityList;
 }
 
 long Solution::getHeuristicValue() {
@@ -61,6 +70,10 @@ bool Solution::isValid() {
 	}
 
 	return true;
+}
+
+bool Solution::isSelected(int item) {
+	return this->solution.at(item) != -1;
 }
 
 string Solution::toString() {

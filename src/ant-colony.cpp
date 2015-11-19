@@ -13,7 +13,7 @@
 using namespace std;
 
 int main() {
-	Instance in;
+	/*Instance in;
 	in.numItems = 2;
 	in.numKnapsacks = 2;
 
@@ -26,7 +26,7 @@ int main() {
 	in.weightList.push_back(12);
 	in.weightList.push_back(1);
 
-	/*Colony col(1, 1.0, 1.0, 1.0);
+	Colony col(1, 1.0, 1.0, 1.0);
 
 	Solution sol(&in);
 	cout << sol.toString() << endl;
@@ -41,11 +41,11 @@ int main() {
 
 	vector<long> sols = col.getSolutionValues();
 
-	cout << "sols[0] -> " << sols[1] << " " << endl;*/
+	cout << "sols[0] -> " << sols[1] << " " << endl;
 
 	Solution sol(&in);
 	cout << sol.toString() << endl;
-	cout << sol.isValidUpdate(1, 0) << endl;
+	cout << sol.isValidUpdate(1, 0) << endl;*/
 
 	return 0;
 }

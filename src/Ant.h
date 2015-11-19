@@ -20,7 +20,7 @@ private:
 	Instance* inst;
 	double *pheromoneList;
 
-	void choose();
+	bool choose();
 public:
 	Ant(Instance *inst, double *pheromoneList);
 	virtual ~Ant();

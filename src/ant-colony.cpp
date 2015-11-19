@@ -26,7 +26,7 @@ int main() {
 	in.weightList.push_back(12);
 	in.weightList.push_back(1);
 
-	Colony col(1, 1.0, 1.0, 1.0);
+	/*Colony col(1, 1.0, 1.0, 1.0);
 
 	Solution sol(&in);
 	cout << sol.toString() << endl;
@@ -38,6 +38,14 @@ int main() {
 	cout << in.profitList.at(1) << endl;
 
 	col.run();
+
+	vector<long> sols = col.getSolutionValues();
+
+	cout << "sols[0] -> " << sols[1] << " " << endl;*/
+
+	Solution sol(&in);
+	cout << sol.toString() << endl;
+	cout << sol.isValidUpdate(1, 0) << endl;
 
 	return 0;
 }

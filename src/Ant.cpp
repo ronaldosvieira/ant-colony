@@ -17,10 +17,10 @@ Ant::~Ant() {
 }
 
 void Ant::iterate() {
-	choose();
+	while(choose());
 }
 
-void Ant::choose() {
+bool Ant::choose() {
 	srand(time(NULL));
 
 	double sumProb = 0;
@@ -29,10 +29,13 @@ void Ant::choose() {
 	double probabilities[this->inst->numKnapsacks][this->inst->numItems];
 	double sumOfProbabilities = 0;
 
+	bool itemAvailable = false;
+
 	for (int k = 0; k < this->inst->numKnapsacks; ++k) {
 		for (int i = 0; i < this->inst->numItems; ++i) {
 			if (this->solution.isValidUpdate(i, k)) {
 				probabilities[k][i] = this->pheromoneList[i] * ((1.0 * this->inst->profitList[i]) / this->solution.getRemainingCapacityList().at(k));
+				itemAvailable = true;
 			} else {
 				probabilities[k][i] = 0;
 			}
@@ -40,6 +43,8 @@ void Ant::choose() {
 			sumOfProbabilities += probabilities[k][i];
 		}
 	}
+
+	if (!itemAvailable) return false;
 
 	for (int k = 0; k < this->inst->numKnapsacks; ++k) {
 		for (int i = 0; i < this->inst->numItems; ++i) {
@@ -51,7 +56,7 @@ void Ant::choose() {
 		for (int i = 0; i < this->inst->numItems; ++i) {
 			if (randomNum < sumProb + probabilities[k][i]) {
 				this->solution.update(i, k);
-				return;
+				return true;
 			}
 			sumProb += probabilities[k][i];
 		}

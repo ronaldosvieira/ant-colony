@@ -34,7 +34,7 @@ void Colony::resetPheromoneList() {
 }
 
 void Colony::iterate() {
-	for (int i = 0; i < 1; ++i) {//this->numAnts; ++i) {
+	for (int i = 0; i < this->numAnts; ++i) {
 		this->ants.at(i).iterate();
 	}
 }

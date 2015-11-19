@@ -30,11 +30,11 @@ private:
 
 	void populate();
 	void iterate();
-	vector<long> getSolutionValues();
+
 	void resetPheromoneList();
 public:
 	Colony(int numAnts, double evaporationRatio, double alfa, double beta);
-	Solution* run();
+	Solution* run();vector<long> getSolutionValues();
 	virtual ~Colony();
 };
 

@@ -12,6 +12,8 @@
 
 #include "Ant.h"
 
+#define INITIAL_PHEROMONE_VALUE 1
+
 namespace std {
 
 class Colony {

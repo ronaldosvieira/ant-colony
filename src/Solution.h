@@ -22,13 +22,16 @@ private:
 public:
 	Solution(Instance *inst);
 	virtual ~Solution();
-	void emptySolution();
-	bool isValidUpdate(int item, int knapsack);
+	void empty();
 	void update(int item, int knapsack);
-	long getHeuristicValue();
+
+	long getValue();
 	vector<int> getRemainingCapacityList();
+
 	bool isValid();
+	bool isValidUpdate(int item, int knapsack);
 	bool isSelected(int item);
+
 	string toString();
 };
 

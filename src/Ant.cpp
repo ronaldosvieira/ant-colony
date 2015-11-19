@@ -9,7 +9,7 @@
 
 Ant::Ant(Instance *inst, double *pheromoneList) : solution(inst), pheromoneList(pheromoneList) {
 	this->inst = inst;
-	solution.emptySolution();
+	solution.empty();
 }
 
 Ant::~Ant() {
@@ -59,7 +59,7 @@ void Ant::choose() {
 }
 
 long Ant::getValue() {
-	return solution.getHeuristicValue();
+	return solution.getValue();
 }
 
 Solution* Ant::getSolution() {

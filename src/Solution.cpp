@@ -8,14 +8,14 @@
 #include "Solution.h"
 
 Solution::Solution(Instance *inst) : inst(inst), remainingCapacityList(this->inst->capacityList) {
-	emptySolution();
+	empty();
 }
 
 Solution::~Solution() {
 	// TODO Auto-generated destructor stub
 }
 
-void Solution::emptySolution() {
+void Solution::empty() {
 	solution.reserve(inst->numItems);
 
 	for (int i = 0; i < inst->numItems; ++i) {
@@ -37,7 +37,7 @@ vector<int> Solution::getRemainingCapacityList() {
 	return this->remainingCapacityList;
 }
 
-long Solution::getHeuristicValue() {
+long Solution::getValue() {
 	long value = 0;
 
 	for (int i = 0; i < inst->numItems; ++i) {

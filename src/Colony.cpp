@@ -29,8 +29,7 @@ void Colony::resetPheromoneList() {
 	//pheromoneList[this->inst.numItems];
 
 	for (int i = 0; i < this->inst.numItems; ++i) {
-		pheromoneList[i] = 1;
-		cout << pheromoneList[i] << " " << i << endl;
+		pheromoneList[i] = INITIAL_PHEROMONE_VALUE;
 	}
 }
 

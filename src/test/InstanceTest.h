@@ -8,8 +8,6 @@
 #ifndef SRC_INSTANCETEST_H_
 #define SRC_INSTANCETEST_H_
 
-#include <iostream>
-
 #include "cute.h"
 
 #include "../model/Instance.h"

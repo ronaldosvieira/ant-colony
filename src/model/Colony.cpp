@@ -5,7 +5,7 @@
  *      Author: Ronaldo
  */
 
-#include "Colony.h"
+/*#include "Colony.h"
 
 namespace std {
 
@@ -64,4 +64,5 @@ Solution* Colony::run() {
 	return this->ants.at(bestIndex).getSolution();
 }
 
-} /* namespace std */
+}*/ /* namespace std */
+

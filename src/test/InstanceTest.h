@@ -18,13 +18,13 @@ class InstanceTest {
 public:
    InstanceTest();
    virtual ~InstanceTest();
-    // Must define void operator() with no arguments.
-    // In implementation: add calls to cute-assert functions and methods like someFunction1
+
     void operator()();
 
 private:
-    // Whatever methods you need
     void testWrongNumItems();
+    void testWrongNumKnapsacks();
+
     void initialize(int &nI, int &nK, std::vector<int> &wL,
 			std::vector<int> &pL, std::vector<int> &cL);
 };

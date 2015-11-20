@@ -13,10 +13,11 @@ InstanceTest::~InstanceTest() {}
 
 void InstanceTest::operator()() {
 	testWrongNumItems();
+	testWrongNumKnapsacks();
 }
 
 void InstanceTest::testWrongNumItems() {
-    int nI = 2;
+    int nI = 0;
 	int nK = 3;
 
 	std::vector<int> wL;
@@ -33,6 +34,27 @@ void InstanceTest::testWrongNumItems() {
 	cL.push_back(5);
 
 	ASSERT_THROWS(initialize(nI, nK, wL, pL, cL), std::invalid_argument);
+}
+
+void InstanceTest::testWrongNumKnapsacks() {
+    int nI2 = 2;
+	int nK2 = 0;
+
+	std::vector<int> wL2;
+	wL2.push_back(5);
+	wL2.push_back(5);
+
+	std::vector<int> pL2;
+	pL2.push_back(5);
+	pL2.push_back(5);
+
+	std::vector<int> cL2;
+	cL2.push_back(5);
+	cL2.push_back(5);
+	cL2.push_back(5);
+
+	ASSERT_THROWS(initialize(nI2, nK2, wL2, pL2, cL2), std::invalid_argument);
+
 }
 
 void InstanceTest::initialize(int &nI, int &nK, std::vector<int> &wL,

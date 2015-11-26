@@ -5,12 +5,12 @@
  *      Author: Ronaldo
  */
 
-/*#include "Colony.h"
+#include "Colony.h"
 
 namespace std {
 
-Colony::Colony(int numAnts, double evaporationRatio, double alfa , double beta) :
-	numAnts(numAnts), evaporationRatio(evaporationRatio), alfa(alfa), beta(beta) {
+Colony::Colony(Instance inst, int numAnts, double evaporationRatio, double alfa , double beta) :
+	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alfa(alfa), beta(beta) {
 	resetPheromoneList();
 	populate();
 }
@@ -21,7 +21,7 @@ Colony::~Colony() {
 
 void Colony::populate() {
 	for (int i = 0; i < numAnts; ++i) {
-		ants.push_back(Ant(&this->inst, this->pheromoneList));
+		ants.push_back(Ant(this->inst, this->pheromoneList));
 	}
 }
 
@@ -64,5 +64,5 @@ Solution* Colony::run() {
 	return this->ants.at(bestIndex).getSolution();
 }
 
-}*/ /* namespace std */
+} /* namespace std */
 

@@ -7,7 +7,7 @@
 
 #include "Solution.h"
 
-Solution::Solution(Instance *inst) : inst(inst), remainingCapacityList(this->inst->capacityList) {
+Solution::Solution(Instance inst) : inst(inst), remainingCapacityList(this->inst.capacityList) {
 	empty();
 }
 
@@ -16,33 +16,35 @@ Solution::~Solution() {
 }
 
 void Solution::empty() {
-	solution.reserve(inst->numItems);
-
-	for (int i = 0; i < inst->numItems; ++i) {
-		solution[i] = -1;
+	for (int i = 0; i < this->inst.numItems; ++i) {
+		solution.push_back(-1);
 	}
 }
 
+std::vector<int> Solution::getRawSolution() {
+	return this->solution;
+}
+
 bool Solution::isValidUpdate(int item, int knapsack) {
-	return remainingCapacityList[knapsack] - this->inst->weightList[item] >= 0 &&
+	return remainingCapacityList[knapsack] - this->inst.weightList[item] >= 0 &&
 			solution[item] != -1;
 }
 
 void Solution::update(int item, int knapsack) {
 	solution[item] = knapsack;
-	remainingCapacityList[knapsack] -= this->inst->weightList[item];
+	remainingCapacityList[knapsack] -= this->inst.weightList[item];
 }
 
-vector<int> Solution::getRemainingCapacityList() {
+std::vector<int> Solution::getRemainingCapacityList() {
 	return this->remainingCapacityList;
 }
 
 long Solution::getValue() {
 	long value = 0;
 
-	for (int i = 0; i < inst->numItems; ++i) {
+	for (int i = 0; i < this->inst.numItems; ++i) {
 		if (solution[i] != -1) {
-			value += inst->profitList.at(i);
+			value += inst.profitList.at(i);
 		}
 	}
 
@@ -50,21 +52,21 @@ long Solution::getValue() {
 }
 
 bool Solution::isValid() {
-	long totalWeightList[inst->numKnapsacks];
+	long totalWeightList[inst.numKnapsacks];
 	int i;
 
-	for (i = 0; i < inst->numKnapsacks; i++) {
+	for (i = 0; i < inst.numKnapsacks; i++) {
 		totalWeightList[i] = 0;
 	}
 
-	for (i = 0; i < inst->numItems; i++) {
+	for (i = 0; i < inst.numItems; i++) {
 		if (solution[i] != -1) {
-			totalWeightList[solution[i]] += inst->weightList[i];
+			totalWeightList[solution[i]] += inst.weightList[i];
 		}
 	}
 
-	for (i = 0; i < inst->numKnapsacks; ++i) {
-		if (totalWeightList[i] > inst->capacityList[i]) {
+	for (i = 0; i < inst.numKnapsacks; ++i) {
+		if (totalWeightList[i] > inst.capacityList[i]) {
 			return false;
 		}
 	}
@@ -76,10 +78,10 @@ bool Solution::isSelected(int item) {
 	return this->solution.at(item) != -1;
 }
 
-string Solution::toString() {
-	string solStr = "";
+std::string Solution::toString() {
+	std::string solStr = "";
 
-	for (int i = 0; i < inst->numItems; ++i) {
+	for (int i = 0; i < inst.numItems; ++i) {
 		if (solution[i] == -1) solStr += '-';
 		else solStr += solution[i] + '0';
 	}

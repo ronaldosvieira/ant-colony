@@ -17,12 +17,12 @@ class Ant {
 private:
 	Solution solution;
 
-	Instance* inst;
+	Instance inst;
 	double *pheromoneList;
 
 	bool choose();
 public:
-	Ant(Instance *inst, double *pheromoneList);
+	Ant(Instance inst, double *pheromoneList);
 	virtual ~Ant();
 	void iterate();
 	long getValue();

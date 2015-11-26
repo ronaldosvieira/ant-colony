@@ -11,28 +11,27 @@
 #include <string>
 #include "Instance.h"
 
-using namespace std;
-
 class Solution {
 private:
-	vector<int> solution;
-	Instance *inst;
+	std::vector<int> solution;
+	Instance inst;
 
-	vector<int> remainingCapacityList;
+	std::vector<int> remainingCapacityList;
 public:
-	Solution(Instance *inst);
+	Solution(Instance inst);
 	virtual ~Solution();
 	void empty();
 	void update(int item, int knapsack);
 
 	long getValue();
-	vector<int> getRemainingCapacityList();
+	std::vector<int> getRawSolution();
+	std::vector<int> getRemainingCapacityList();
 
 	bool isValid();
 	bool isValidUpdate(int item, int knapsack);
 	bool isSelected(int item);
 
-	string toString();
+	std::string toString();
 };
 
 #endif /* SOLUTION_H_ */

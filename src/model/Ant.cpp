@@ -7,8 +7,7 @@
 
 #include "Ant.h"
 
-Ant::Ant(Instance *inst, double *pheromoneList) : solution(inst), pheromoneList(pheromoneList) {
-	this->inst = inst;
+Ant::Ant(Instance inst, double *pheromoneList) : inst(inst), solution(inst), pheromoneList(pheromoneList) {
 	solution.empty();
 }
 
@@ -26,15 +25,15 @@ bool Ant::choose() {
 	double sumProb = 0;
 	double randomNum = (double) (rand() / RAND_MAX);
 
-	double probabilities[this->inst->numKnapsacks][this->inst->numItems];
+	double probabilities[this->inst.numKnapsacks][this->inst.numItems];
 	double sumOfProbabilities = 0;
 
 	bool itemAvailable = false;
 
-	for (int k = 0; k < this->inst->numKnapsacks; ++k) {
-		for (int i = 0; i < this->inst->numItems; ++i) {
+	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
+		for (int i = 0; i < this->inst.numItems; ++i) {
 			if (this->solution.isValidUpdate(i, k)) {
-				probabilities[k][i] = this->pheromoneList[i] * ((1.0 * this->inst->profitList[i]) / this->solution.getRemainingCapacityList().at(k));
+				probabilities[k][i] = this->pheromoneList[i] * ((1.0 * this->inst.profitList[i]) / this->solution.getRemainingCapacityList().at(k));
 				itemAvailable = true;
 			} else {
 				probabilities[k][i] = 0;
@@ -46,14 +45,14 @@ bool Ant::choose() {
 
 	if (!itemAvailable) return false;
 
-	for (int k = 0; k < this->inst->numKnapsacks; ++k) {
-		for (int i = 0; i < this->inst->numItems; ++i) {
+	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
+		for (int i = 0; i < this->inst.numItems; ++i) {
 			probabilities[k][i] = 1.0 * probabilities[k][i] / sumOfProbabilities;
 		}
 	}
 
-	for (int k = 0; k < this->inst->numKnapsacks; ++k) {
-		for (int i = 0; i < this->inst->numItems; ++i) {
+	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
+		for (int i = 0; i < this->inst.numItems; ++i) {
 			if (randomNum < sumProb + probabilities[k][i]) {
 				this->solution.update(i, k);
 				return true;

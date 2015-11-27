@@ -23,7 +23,7 @@ private:
 	double alfa;
 	double beta;
 
-	double pheromoneList[];
+	vector<double> pheromoneList;
 
 	vector<Ant> ants;
 	Instance inst;

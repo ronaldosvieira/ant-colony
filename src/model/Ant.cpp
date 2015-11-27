@@ -7,7 +7,7 @@
 
 #include "Ant.h"
 
-Ant::Ant(Instance inst, double *pheromoneList) : inst(inst), solution(inst), pheromoneList(pheromoneList) {
+Ant::Ant(Instance inst, std::vector<double> *pheromoneList) : inst(inst), solution(inst), pheromoneList(pheromoneList) {
 	solution.empty();
 }
 
@@ -16,10 +16,10 @@ Ant::~Ant() {
 }
 
 void Ant::iterate() {
-	while(choose());
+	while(findSolution());
 }
 
-bool Ant::choose() {
+bool Ant::findSolution() {
 	srand(time(NULL));
 
 	double sumProb = 0;
@@ -33,7 +33,7 @@ bool Ant::choose() {
 	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
 		for (int i = 0; i < this->inst.numItems; ++i) {
 			if (this->solution.isValidUpdate(i, k)) {
-				probabilities[k][i] = this->pheromoneList[i] * ((1.0 * this->inst.profitList[i]) / this->solution.getRemainingCapacityList().at(k));
+				probabilities[k][i] = this->pheromoneList->at(i) * ((1.0 * this->inst.profitList[i]) / this->solution.getRemainingCapacityList().at(k));
 				itemAvailable = true;
 			} else {
 				probabilities[k][i] = 0;

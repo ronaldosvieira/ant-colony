@@ -21,15 +21,13 @@ Colony::~Colony() {
 
 void Colony::populate() {
 	for (int i = 0; i < numAnts; ++i) {
-		ants.push_back(Ant(this->inst, this->pheromoneList));
+		ants.push_back(Ant(this->inst, &this->pheromoneList));
 	}
 }
 
 void Colony::resetPheromoneList() {
-	//pheromoneList[this->inst.numItems];
-
 	for (int i = 0; i < this->inst.numItems; ++i) {
-		pheromoneList[i] = INITIAL_PHEROMONE_VALUE;
+		pheromoneList.push_back(INITIAL_PHEROMONE_VALUE);
 	}
 }
 

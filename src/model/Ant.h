@@ -18,12 +18,13 @@ private:
 	Solution solution;
 
 	Instance inst;
-	double *pheromoneList;
+	std::vector<double> *pheromoneList;
 
-	bool choose();
+	bool findSolution();
 public:
-	Ant(Instance inst, double *pheromoneList);
+	Ant(Instance inst, std::vector<double> *pheromoneList);
 	virtual ~Ant();
+
 	void iterate();
 	long getValue();
 	Solution* getSolution();

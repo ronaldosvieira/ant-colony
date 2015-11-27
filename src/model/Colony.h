@@ -34,7 +34,7 @@ private:
 	void resetPheromoneList();
 public:
 	Colony(Instance inst, int numAnts, double evaporationRatio, double alfa, double beta);
-	Solution* run();vector<long> getSolutionValues();
+	Solution run();vector<long> getSolutionValues();
 	virtual ~Colony();
 };
 

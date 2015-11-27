@@ -47,7 +47,7 @@ vector<long> Colony::getSolutionValues() {
 	return solValues;
 }
 
-Solution* Colony::run() {
+Solution Colony::run() {
 	for (int i = 0; i < inst.numItems; ++i) {
 		iterate();
 	}

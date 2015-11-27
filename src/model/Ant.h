@@ -27,7 +27,7 @@ public:
 
 	void iterate();
 	long getValue();
-	Solution* getSolution();
+	Solution getSolution();
 };
 
 #endif /* ANT_H_ */

@@ -66,6 +66,6 @@ long Ant::getValue() {
 	return solution.getValue();
 }
 
-Solution* Ant::getSolution() {
-	return &this->solution;
+Solution Ant::getSolution() {
+	return this->solution;
 }

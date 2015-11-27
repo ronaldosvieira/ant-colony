@@ -11,6 +11,7 @@ namespace std {
 
 Colony::Colony(Instance inst, int numAnts, double evaporationRatio, double alfa , double beta) :
 	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alfa(alfa), beta(beta) {
+	srand(time(NULL));
 	resetPheromoneList();
 	populate();
 }

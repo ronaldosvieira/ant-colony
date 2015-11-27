@@ -27,7 +27,7 @@ std::vector<int> Solution::getRawSolution() {
 
 bool Solution::isValidUpdate(int item, int knapsack) {
 	return remainingCapacityList[knapsack] - this->inst.weightList[item] >= 0 &&
-			solution[item] != -1;
+			solution[item] == -1;
 }
 
 void Solution::update(int item, int knapsack) {

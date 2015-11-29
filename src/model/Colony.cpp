@@ -7,8 +7,6 @@
 
 #include "Colony.h"
 
-namespace std {
-
 Colony::Colony(Instance inst, int numAnts, double evaporationRatio, double alfa , double beta) :
 	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alfa(alfa), beta(beta) {
 	srand(time(NULL));
@@ -38,8 +36,8 @@ void Colony::iterate() {
 	}
 }
 
-vector<long> Colony::getSolutionValues() {
-	vector<long> solValues;
+std::vector<long> Colony::getSolutionValues() {
+	std::vector<long> solValues;
 
 	for (int i = 0; i < this->numAnts; ++i) {
 		solValues.push_back(this->ants.at(i).getValue());
@@ -53,7 +51,7 @@ Solution Colony::run() {
 		iterate();
 	}
 
-	vector<long> solValues = this->getSolutionValues();
+	std::vector<long> solValues = this->getSolutionValues();
 	int bestIndex = 0;
 
 	for (int i = 0; i < this->numAnts; ++i) {
@@ -62,6 +60,4 @@ Solution Colony::run() {
 
 	return this->ants.at(bestIndex).getSolution();
 }
-
-} /* namespace std */
 

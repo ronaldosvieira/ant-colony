@@ -82,6 +82,7 @@ void InstanceTest::testReadFromFile() {
 
 	try {
 		Instance inst("./src/test/instance01.txt");
+		remove("./src/test/instance01.txt");
 	} catch (std::invalid_argument &e) {
 		FAIL();
 	}
@@ -113,6 +114,8 @@ void InstanceTest::testReadFromWrongFile() {
 	testFile.close();
 
 	ASSERT_THROWS(Instance("./src/test/instance02.txt"), std::invalid_argument);
+
+	remove("./src/test/instance02.txt");
 }
 
 void InstanceTest::initialize(int &nI, int &nK, std::vector<int> &wL,

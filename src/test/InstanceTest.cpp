@@ -118,10 +118,10 @@ void InstanceTest::testReadFromWrongFile() {
 	remove("./src/test/instance02.txt");
 }
 
-void InstanceTest::initialize(int &nI, int &nK, std::vector<int> &wL,
+Instance InstanceTest::initialize(int &nI, int &nK, std::vector<int> &wL,
 			std::vector<int> &pL, std::vector<int> &cL) {
 	try {
-		Instance inst(nI, nK, wL, pL, cL);
+		return Instance(nI, nK, wL, pL, cL);
 	} catch (std::invalid_argument &e) {
 		throw;
 	}

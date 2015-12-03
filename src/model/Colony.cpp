@@ -24,6 +24,12 @@ void Colony::populate() {
 	}
 }
 
+void Colony::evaporate() {
+	for (int i = 0; i < this->pheromoneList.size(); ++i) {
+		this->pheromoneList[i] *= this->evaporationRatio;
+	}
+}
+
 void Colony::resetPheromoneList() {
 	for (int i = 0; i < this->inst.numItems; ++i) {
 		pheromoneList.push_back(INITIAL_PHEROMONE_VALUE);
@@ -34,6 +40,8 @@ void Colony::iterate() {
 	for (int i = 0; i < this->numAnts; ++i) {
 		this->ants.at(i).iterate();
 	}
+
+	evaporate();
 }
 
 std::vector<long> Colony::getSolutionValues() {

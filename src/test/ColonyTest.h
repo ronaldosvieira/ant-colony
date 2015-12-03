@@ -21,10 +21,10 @@ public:
 private:
 	void testGetSolutionValues();
 	void testResetPheromoneList();
-	void testNumAnts();
 
-	Colony initialize(Instance inst, int numAnts,
-			double evaporationRatio, double alfa, double beta);
+	Colony initialize(int numAnts = 1,
+			double evaporationRatio = 0.5, double alfa = 1.0,
+			double beta = 1.0);
 };
 
 #endif /* SRC_TEST_COLONYTEST_H_ */

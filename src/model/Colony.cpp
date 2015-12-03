@@ -46,6 +46,10 @@ std::vector<long> Colony::getSolutionValues() {
 	return solValues;
 }
 
+std::vector<double> Colony::getPheromoneList() {
+	return this->pheromoneList;
+}
+
 Solution Colony::run() {
 	for (int i = 0; i < inst.numItems; ++i) {
 		iterate();

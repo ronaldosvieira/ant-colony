@@ -12,7 +12,7 @@
 
 #include "Ant.h"
 
-#define INITIAL_PHEROMONE_VALUE 1
+constexpr auto INITIAL_PHEROMONE_VALUE = 1;
 
 class Colony {
 private:
@@ -34,6 +34,7 @@ public:
 	Colony(Instance inst, int numAnts, double evaporationRatio, double alfa, double beta);
 	Solution run();
 	std::vector<long> getSolutionValues();
+	std::vector<double> getPheromoneList();
 	virtual ~Colony();
 };
 

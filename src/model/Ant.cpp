@@ -15,7 +15,7 @@
 #  define DEBUG(x) do {} while (0)
 #endif
 
-Ant::Ant(Instance inst, std::vector<double> *pheromoneList) : inst(inst), solution(inst), pheromoneList(pheromoneList) {
+Ant::Ant(Instance inst, std::vector<double> *pheromoneList) : pheromoneList(pheromoneList), inst(inst), solution(inst) {
 	solution.empty();
 }
 
@@ -25,6 +25,13 @@ Ant::~Ant() {
 
 void Ant::iterate() {
 	while(findSolution());
+}
+
+double Ant::calcProbability(int i, int k) {
+	double ph = 1.0;//this->pheromoneList->at(i);
+	double hI = 1.0 * this->inst.profitList.at(i) / this->solution.getRemainingCapacityList().at(k);
+
+	return pow(ph, 1.0) * pow(hI, 1.0);
 }
 
 bool Ant::findSolution() {
@@ -39,7 +46,7 @@ bool Ant::findSolution() {
 	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
 		for (int i = 0; i < this->inst.numItems; ++i) {
 			if (this->solution.isValidUpdate(i, k)) {
-				probabilities[k][i] = this->pheromoneList->at(i) * ((1.0f * this->inst.profitList[i]) / this->solution.getRemainingCapacityList().at(k));
+				probabilities[k][i] = calcProbability(i, k);
 				itemAvailable = true;
 			} else {
 				probabilities[k][i] = 0.0f;

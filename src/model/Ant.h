@@ -8,6 +8,7 @@
 #ifndef ANT_H_
 #define ANT_H_
 
+#include <cmath>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
@@ -22,6 +23,7 @@ private:
 	std::vector<double> *pheromoneList;
 
 	bool findSolution();
+	double calcProbability(int i, int k);
 public:
 	Ant(Instance inst, std::vector<double> *pheromoneList);
 	virtual ~Ant();

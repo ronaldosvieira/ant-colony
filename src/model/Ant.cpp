@@ -15,7 +15,9 @@
 #  define DEBUG(x) do {} while (0)
 #endif
 
-Ant::Ant(Instance inst, std::vector<double> &pheromoneList) : pheromoneList(pheromoneList), inst(inst), solution(inst) {
+Ant::Ant(Instance inst, std::vector<double> &pheromoneList,
+		double alpha, double beta) : pheromoneList(pheromoneList),
+		inst(inst), solution(inst), alpha(alpha), beta(beta) {
 	solution.empty();
 }
 
@@ -31,7 +33,7 @@ double Ant::calcProbability(int i, int k) {
 	double ph = this->pheromoneList.at(i);
 	double hI = 1.0 * this->inst.profitList.at(i) / this->solution.getRemainingCapacityList().at(k);
 
-	return pow(ph, 1.0) * pow(hI, 1.0);
+	return pow(ph, alpha) * pow(hI, beta);
 }
 
 bool Ant::findSolution() {

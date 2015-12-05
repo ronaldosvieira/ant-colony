@@ -28,7 +28,7 @@ void Ant::iterate() {
 }
 
 double Ant::calcProbability(int i, int k) {
-	double ph = 1.0;//this->pheromoneList->at(i);
+	double ph = this->pheromoneList.at(i);
 	double hI = 1.0 * this->inst.profitList.at(i) / this->solution.getRemainingCapacityList().at(k);
 
 	return pow(ph, 1.0) * pow(hI, 1.0);

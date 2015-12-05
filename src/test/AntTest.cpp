@@ -39,7 +39,29 @@ void AntTest::testGetValue() {
 
 void AntTest::testIterate() {
 	srand(time(NULL));
-	Ant ant = initialize();
+	int nI = 2;
+	int nK = 3;
+
+	std::vector<int> wL;
+	wL.push_back(5);
+	wL.push_back(6);
+
+	std::vector<int> pL;
+	pL.push_back(5);
+	pL.push_back(6);
+
+	std::vector<int> cL;
+	cL.push_back(7);
+	cL.push_back(8);
+	cL.push_back(9);
+
+	Instance inst(nI, nK, wL, pL, cL);
+
+	std::vector<double> pheromoneList;
+	pheromoneList.push_back(0.5);
+	pheromoneList.push_back(0.5);
+
+	Ant ant(inst, pheromoneList);
 
 	ant.iterate();
 	ASSERT_NOT_EQUAL_TO(0, ant.getValue());

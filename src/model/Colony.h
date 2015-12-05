@@ -34,7 +34,8 @@ private:
 
 	void resetPheromoneList();
 public:
-	Colony(Instance inst, int numAnts, double evaporationRatio, double alfa, double beta);
+	Colony(Instance inst, int numAnts, double evaporationRatio,
+			double alfa, double beta);
 	Solution run();
 	std::vector<long> getSolutionValues();
 	std::vector<double> getPheromoneList();

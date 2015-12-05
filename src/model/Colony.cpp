@@ -77,7 +77,7 @@ std::vector<double> Colony::getPheromoneList() {
 }
 
 Solution Colony::run() {
-	for (int i = 0; i < inst.numItems; ++i) {
+	for (int i = 0; i < NUM_ITERATIONS; ++i) {
 		iterate();
 	}
 

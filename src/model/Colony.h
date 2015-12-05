@@ -13,6 +13,7 @@
 #include "Ant.h"
 
 constexpr auto INITIAL_PHEROMONE_VALUE = 1;
+constexpr auto NUM_ITERATIONS = 100;
 
 class Colony {
 private:

@@ -27,6 +27,7 @@ Ant::~Ant() {
 }
 
 void Ant::iterate() {
+	solution.empty();
 	while(findSolution());
 }
 

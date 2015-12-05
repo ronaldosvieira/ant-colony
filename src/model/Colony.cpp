@@ -7,8 +7,8 @@
 
 #include "Colony.h"
 
-Colony::Colony(Instance inst, int numAnts, double evaporationRatio, double alfa , double beta) :
-	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alfa(alfa), beta(beta) {
+Colony::Colony(Instance inst, int numAnts, double evaporationRatio, double alpha , double beta) :
+	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alpha(alpha), beta(beta) {
 	srand(time(NULL));
 	resetPheromoneList();
 	populate();
@@ -20,7 +20,7 @@ Colony::~Colony() {
 
 void Colony::populate() {
 	for (int i = 0; i < numAnts; ++i) {
-		ants.push_back(Ant(this->inst, this->pheromoneList, alfa, beta));
+		ants.push_back(Ant(this->inst, this->pheromoneList, alpha, beta));
 	}
 }
 
@@ -93,6 +93,6 @@ Solution Colony::run() {
 	return this->ants.at(bestIndex).getSolution();
 }
 
-void Colony::setAlfa(double alfa) {this->alfa = alfa;}
+void Colony::setAlpha(double alpha) {this->alpha = alpha;}
 void Colony::setBeta(double beta) {this->beta = beta;}
 

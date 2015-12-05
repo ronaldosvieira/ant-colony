@@ -19,7 +19,7 @@ class Colony {
 private:
 	int numAnts;
 	double evaporationRatio;
-	double alfa;
+	double alpha;
 	double beta;
 
 	std::vector<double> pheromoneList;
@@ -35,11 +35,11 @@ private:
 	void resetPheromoneList();
 public:
 	Colony(Instance inst, int numAnts, double evaporationRatio,
-			double alfa, double beta);
+			double alpha, double beta);
 	Solution run();
 	std::vector<long> getSolutionValues();
 	std::vector<double> getPheromoneList();
-	void setAlfa(double alfa);
+	void setAlpha(double alpha);
 	void setBeta(double beta);
 	virtual ~Colony();
 };

@@ -7,13 +7,18 @@
 
 #include "Instance.h"
 
-Instance::Instance(int &numItems, int &numKnapsacks, std::vector<int> &weightList,
+Instance::Instance(int &numItems, int &numKnapsacks, std::vector<std::vector<int>> &weightList,
 		std::vector<int> &profitList, std::vector<int> &capacityList) :
 		numItems(numItems), numKnapsacks(numKnapsacks), weightList(weightList),
 		profitList(profitList), capacityList(capacityList) {
 
 	if (profitList.size() != numItems) throw std::invalid_argument("Size of profit list not equal to numItems");
-	if (weightList.size() != numItems) throw std::invalid_argument("Size of weight list not equal to numItems");
+	if (weightList.size() != numKnapsacks) throw std::invalid_argument("Size of weight list not equal to numKnapsacks");
+
+	for (int k = 0; k < this->numKnapsacks; ++k) {
+		if (weightList.at(k).size() != numItems) throw std::invalid_argument("Size of weight list[k] not equal to numItems");
+	}
+
 	if (capacityList.size() != numKnapsacks) throw std::invalid_argument("Size of capacity list not equal to numKnapsacks");
 }
 
@@ -22,80 +27,79 @@ Instance::Instance(const std::string fileName) {
 	std::string line;
 	std::vector<std::string> tokens;
 
+	std::vector<int> all;
+	int index = 0;
+
 	DEBUG("\n");
 	DEBUG("Opening file " << fileName << "...\n");
 
 	file.open(fileName.c_str());
 	if (!file.is_open()) throw std::invalid_argument("Couldn't open file" + fileName);
 
+	while (!file.eof()) {
+		getline(file, line);
+		split(line, ' ', tokens);
+
+		for (int i = 0; i < tokens.size(); ++i) {
+			all.push_back(atoi(tokens.at(i).c_str()));
+		}
+	}
+
 	DEBUG("File opened!\n");
 	DEBUG("Reading numItems and numKnapsacks...\n");
 
 	// read numItems and numKnapsacks
-	getline(file, line);
-	split(line, ' ', tokens);
-
-	this->numItems 		= atoi(tokens.at(1).c_str());
-	this->numKnapsacks 	= atoi(tokens.at(0).c_str());
+	this->numKnapsacks	= all.at(index++);
+	this->numItems	 	= all.at(index++);
 
 	DEBUG("numItems     = " << this->numItems << "\n");
 	DEBUG("numKnapsacks = " << this->numKnapsacks << "\n");
 
-	line.clear();
-	tokens.clear();
-
 	DEBUG("Reading profitList...\n");
 
 	// read profitList
-	getline(file, line);
-	split(line, ' ', tokens);
-
-	for (int i = 0; i < tokens.size(); ++i) {
-		this->profitList.push_back(atoi(tokens.at(i).c_str()));
+	for (int i = 0; i < this->numItems; ++i) {
+		this->profitList.push_back(all.at(index++));
 	}
 
-	DEBUG("profitList = " << line << "\n");
+	DEBUG("profitList.size() = " << this->profitList.size() << "\n");
 
 	if (this->profitList.size() != numItems) {
 		throw std::invalid_argument("Size of profit list not equal to numItems");
 	}
 
-	line.clear();
-	tokens.clear();
-
 	DEBUG("Reading capacityList...\n");
 
 	// read capacityList
-	getline(file, line);
-	split(line, ' ', tokens);
-
-	for (int i = 0; i < tokens.size(); ++i) {
-		capacityList.push_back(atoi(tokens.at(i).c_str()));
+	for (int i = 0; i < this->numKnapsacks; ++i) {
+		capacityList.push_back(all.at(index++));
 	}
 
-	DEBUG("capacityList = " << line << "\n");
+	DEBUG("capacityList.size() = " << this->capacityList.size() << "\n");
 
 	if (this->capacityList.size() != numKnapsacks) {
 		throw std::invalid_argument("Size of capacity list not equal to numKnapsacks");
 	}
 
-	line.clear();
-	tokens.clear();
-
 	DEBUG("Reading weightList...\n");
 
 	// read weightList
-	getline(file, line);
-	split(line, ' ', tokens);
+	for (int k = 0; k < this->numKnapsacks; ++k) {
+		this->weightList.push_back(std::vector<int>());
 
-	for (int i = 0; i < tokens.size(); ++i) {
-		weightList.push_back(atoi(tokens.at(i).c_str()));
+		for (int i = 0; i < this->numItems; ++i) {
+			this->weightList.at(k).push_back(all.at(index++));
+		}
+
+		DEBUG("Knapsack" << k << " weightList.at(k).size() = " << this->weightList.at(k).size() << "\n");
+
+		if (this->weightList.at(k).size() != numItems) {
+			throw std::invalid_argument("Size of weight list of a knapsack not equal to numItems");
+		}
 	}
 
-	DEBUG("weightList = " << line << "\n");
-
-	if (this->weightList.size() != numItems) {
-		throw std::invalid_argument("Size of weight list not equal to numItems");
+	if (this->weightList.size() != numKnapsacks) {
+		throw std::invalid_argument("Size of weight list not equal to numKnapsack");
 	}
 
 	DEBUG("Closing file...\n");

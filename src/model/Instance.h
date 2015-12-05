@@ -28,11 +28,11 @@ class Instance {
 public:
 	int numItems;
 	int numKnapsacks;
-	std::vector<int> weightList;
+	std::vector<std::vector<int>> weightList;
 	std::vector<int> profitList;
 	std::vector<int> capacityList;
 
-	Instance(int &numItems, int &numKnapsacks, std::vector<int> &weightList,
+	Instance(int &numItems, int &numKnapsacks, std::vector<std::vector<int>> &weightList,
 			std::vector<int> &profitList, std::vector<int> &capacityList);
 	Instance(std::string fileName);
 	virtual ~Instance();

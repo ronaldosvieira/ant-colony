@@ -14,6 +14,7 @@ ColonyTest::~ColonyTest() {}
 void ColonyTest::operator()() {
 	testGetSolutionValues();
 	testResetPheromoneList();
+	testRun();
 }
 
 void ColonyTest::testGetSolutionValues() {
@@ -33,6 +34,19 @@ void ColonyTest::testResetPheromoneList() {
 
 	for (int i = 0; i < phL.size(); ++i) {
 		ASSERT_EQUAL(INITIAL_PHEROMONE_VALUE, phL.at(i));
+	}
+}
+
+void ColonyTest::testRun() {
+	Colony col = initialize(5, 0.5, 1.0, 1.0);
+
+	col.run();
+
+	std::vector<long> values = col.getSolutionValues();
+
+	for (int i = 0; i < 5; ++i) {
+		std::cout << "Ant " << i << ": " << values.at(i) << "\n";
+		ASSERT_NOT_EQUAL_TO(0, values.at(i));
 	}
 }
 

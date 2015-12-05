@@ -30,6 +30,23 @@ void Colony::evaporate() {
 	}
 }
 
+void Colony::updatePheromoneList() {
+	int bestAnt = 0;
+	for (int a = 0; a < this->numAnts; ++a) {
+		if (this->ants.at(a).getValue() > this->ants.at(bestAnt).getValue()) {
+			bestAnt = a;
+		}
+	}
+
+	//for (int a = 0; a < this->numAnts; ++a) {
+	for (int i = 0; i < this->inst.numItems; ++i) {
+		if (this->ants.at(bestAnt).getSolution().isSelected(i)) {
+			this->pheromoneList[i] += 1 + (this->inst.profitList.at(i) / this->ants.at(bestAnt).getValue());
+		}
+	}
+	//}
+}
+
 void Colony::resetPheromoneList() {
 	for (int i = 0; i < this->inst.numItems; ++i) {
 		pheromoneList.push_back(INITIAL_PHEROMONE_VALUE);
@@ -42,6 +59,7 @@ void Colony::iterate() {
 	}
 
 	evaporate();
+	updatePheromoneList();
 }
 
 std::vector<long> Colony::getSolutionValues() {

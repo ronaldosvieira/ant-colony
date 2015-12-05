@@ -10,6 +10,7 @@
 
 #include "cute.h"
 
+#include <iostream>
 #include "../model/Colony.h"
 
 class ColonyTest {
@@ -21,6 +22,7 @@ public:
 private:
 	void testGetSolutionValues();
 	void testResetPheromoneList();
+	void testRun();
 
 	Colony initialize(int numAnts = 1,
 			double evaporationRatio = 0.5, double alfa = 1.0,

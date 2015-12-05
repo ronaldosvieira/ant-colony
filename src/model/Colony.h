@@ -29,6 +29,7 @@ private:
 	void populate();
 	void iterate();
 	void evaporate();
+	void updatePheromoneList();
 
 	void resetPheromoneList();
 public:

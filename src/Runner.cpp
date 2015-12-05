@@ -1,18 +1,23 @@
 /*
- * Test.cpp
+ * Runner.cpp
  *
- *  Created on: Nov 20, 2015
+ *  Created on: Dec 5, 2015
  *      Author: Ronaldo
  */
+
+#include "model/Instance.h"
+#include "model/Solution.h"
+#include "model/Ant.h"
+#include "model/Colony.h"
 
 #include "cute.h"
 #include "ide_listener.h"
 #include "cute_runner.h"
 
-#include "InstanceTest.h"
-#include "SolutionTest.h"
-#include "AntTest.h"
-#include "ColonyTest.h"
+#include "test/InstanceTest.h"
+#include "test/SolutionTest.h"
+#include "test/AntTest.h"
+#include "test/ColonyTest.h"
 
 void runSuite(){
     cute::suite s;
@@ -26,6 +31,6 @@ void runSuite(){
     cute::makeRunner(lis)(s, "Instance class tests");
 }
 
-int main(){
-    runSuite();
+int main(int argc, char **argv) {
+	runSuite();
 }

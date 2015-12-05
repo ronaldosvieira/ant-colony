@@ -15,6 +15,15 @@
 #include <stdexcept>
 #include <fstream>
 
+#define DEBUG_BUILD
+#undef DEBUG_BUILD
+
+#ifdef DEBUG_BUILD
+#define DEBUG(x) std::cout << x
+#else
+#  define DEBUG(x) do {} while (0)
+#endif
+
 class Instance {
 public:
 	int numItems;

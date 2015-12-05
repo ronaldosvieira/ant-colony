@@ -93,3 +93,6 @@ Solution Colony::run() {
 	return this->ants.at(bestIndex).getSolution();
 }
 
+void Colony::setAlfa(double alfa) {this->alfa = alfa;}
+void Colony::setBeta(double beta) {this->beta = beta;}
+

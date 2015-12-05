@@ -39,6 +39,8 @@ public:
 	Solution run();
 	std::vector<long> getSolutionValues();
 	std::vector<double> getPheromoneList();
+	void setAlfa(double alfa);
+	void setBeta(double beta);
 	virtual ~Colony();
 };
 

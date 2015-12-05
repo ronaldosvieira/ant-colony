@@ -7,7 +7,8 @@
 
 #include "Ant.h"
 
-#define DEBUG_BUILD 1
+#define DEBUG_BUILD
+#undef DEBUG_BUILD
 
 #ifdef DEBUG_BUILD
 #  define DEBUG(x) std::cout << x

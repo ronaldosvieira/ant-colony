@@ -93,6 +93,14 @@ Solution Colony::run() {
 	return this->ants.at(bestIndex).getSolution();
 }
 
-void Colony::setAlpha(double alpha) {this->alpha = alpha;}
-void Colony::setBeta(double beta) {this->beta = beta;}
+void Colony::setAlpha(double alpha) {
+	this->alpha = alpha;
+}
+
+void Colony::setBeta(double beta) {
+	this->beta = beta;
+}
+void Colony::setEvaporationRatio(double evaporationRatio) {
+	this->evaporationRatio = evaporationRatio;
+}
 

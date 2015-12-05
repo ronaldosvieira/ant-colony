@@ -62,7 +62,10 @@ void AntTest::testIterate() {
 	pheromoneList.push_back(0.5);
 	pheromoneList.push_back(0.5);
 
-	Ant ant(inst, pheromoneList);
+	double alpha = 1.0;
+	double beta = 1.0;
+
+	Ant ant(inst, pheromoneList, alpha, beta);
 
 	ant.iterate();
 	ASSERT_NOT_EQUAL_TO(0, ant.getValue());
@@ -92,5 +95,8 @@ Ant AntTest::initialize() {
 	pheromoneList.push_back(0.5);
 	pheromoneList.push_back(0.5);
 
-	return Ant(inst, pheromoneList);
+	double alpha = 1.0;
+	double beta = 1.0;
+
+	return Ant(inst, pheromoneList, alpha, beta);
 }

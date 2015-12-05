@@ -17,7 +17,7 @@
 #endif
 
 Ant::Ant(Instance inst, std::vector<double> &pheromoneList,
-		double alpha, double beta) : pheromoneList(pheromoneList),
+		double &alpha, double &beta) : pheromoneList(pheromoneList),
 		inst(inst), solution(inst), alpha(alpha), beta(beta) {
 	solution.empty();
 }

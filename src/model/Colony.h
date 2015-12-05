@@ -41,6 +41,7 @@ public:
 	std::vector<double> getPheromoneList();
 	void setAlpha(double alpha);
 	void setBeta(double beta);
+	void setEvaporationRatio(double evaporationRatio);
 	virtual ~Colony();
 };
 

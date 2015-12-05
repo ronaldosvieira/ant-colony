@@ -44,27 +44,33 @@ Instance openInstance(std::string fileName) {
 	}
 }
 
-void run() {
-	Instance sento1 = openInstance("sento1.dat");
-	int numAnts = 100;
-
-	Colony col(sento1, numAnts, 0.5, 1.0, 2.0);
-	col.run();
-	std::vector<long> values = col.getSolutionValues();
-
+void printResults(std::vector<long> values) {
 	int best = 0;
-	long sum = 0;
-	for (int i = 0; i < numAnts; ++i) {
-		//std::cout << "Ant " << i << ": " << values.at(i) << "\n";
+	long mean = 0;
+
+	for (int i = 0; i < values.size(); ++i) {
 		if (values.at(i) > best) best = values.at(i);
-		sum += values.at(i);
+
+		mean += values.at(i);
+
 		std::cout << values.at(i) << " ";
 		if ((i + 1) % 20 == 0) std::cout << "\n";
 	}
 
-	std::cout << "\nBest: " << best << "\n";
-	std::cout << "Mean: " << sum / numAnts << "\n";
+	mean /= values.size();
 
+	std::cout << "\nBest: " << best << "\n";
+	std::cout << "Mean: " << mean << "\n";
+}
+
+void run() {
+	Instance sento1 = openInstance("sento1.dat");
+	int numAnts = 100;
+
+	Colony col(sento1, numAnts, 0.5, 1.0, 1.0);
+	col.run();
+
+	printResults(col.getSolutionValues());
 }
 
 int main(int argc, char **argv) {

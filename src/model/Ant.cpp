@@ -15,7 +15,7 @@
 #  define DEBUG(x) do {} while (0)
 #endif
 
-Ant::Ant(Instance inst, std::vector<double> *pheromoneList) : pheromoneList(pheromoneList), inst(inst), solution(inst) {
+Ant::Ant(Instance inst, std::vector<double> &pheromoneList) : pheromoneList(pheromoneList), inst(inst), solution(inst) {
 	solution.empty();
 }
 

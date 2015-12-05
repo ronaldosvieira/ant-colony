@@ -20,7 +20,7 @@ Colony::~Colony() {
 
 void Colony::populate() {
 	for (int i = 0; i < numAnts; ++i) {
-		ants.push_back(Ant(this->inst, &this->pheromoneList));
+		ants.push_back(Ant(this->inst, this->pheromoneList));
 	}
 }
 

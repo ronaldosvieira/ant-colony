@@ -68,5 +68,5 @@ Ant AntTest::initialize() {
 	pheromoneList.push_back(0.5);
 	pheromoneList.push_back(0.5);
 
-	return Ant(inst, &pheromoneList);
+	return Ant(inst, pheromoneList);
 }

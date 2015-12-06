@@ -16,6 +16,8 @@ Solution::~Solution() {
 }
 
 void Solution::empty() {
+	solution.clear();
+	remainingCapacityList = this->inst.capacityList;
 	for (int i = 0; i < this->inst.numItems; ++i) {
 		solution.push_back(-1);
 	}

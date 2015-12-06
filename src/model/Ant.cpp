@@ -42,6 +42,8 @@ bool Ant::findSolution() {
 	rand(); rand();
 	double chosenProb = (double) rand() / RAND_MAX;
 
+	DEBUG("Current solution: " << this->solution.toString() << "\n");
+
 	double probabilities[this->inst.numKnapsacks][this->inst.numItems];
 	double sumOfProbabilities = 0;
 
@@ -60,7 +62,10 @@ bool Ant::findSolution() {
 		}
 	}
 
-	if (!itemAvailable) return false;
+	if (!itemAvailable) {
+		DEBUG("Ant is done! Sol. value is " << this->solution.getValue() << "\n\n");
+		return false;
+	}
 
 	DEBUG("Probabilities matrix:\n");
 

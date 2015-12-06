@@ -42,10 +42,7 @@ void AntTest::testIterate() {
 	int nI = 2;
 	int nK = 3;
 
-	std::vector<int> wL1{5, 6};
-	std::vector<int> wL2{5, 6};
-	std::vector<int> wL3{5, 6};
-	std::vector<std::vector<int>> wL{wL1, wL2, wL3};
+	std::vector<int> wL{5, 6};
 
 	std::vector<int> pL;
 	pL.push_back(5);
@@ -75,10 +72,7 @@ Ant AntTest::initialize() {
 	int nI = 2;
 	int nK = 3;
 
-	std::vector<int> wL1{5, 6};
-	std::vector<int> wL2{5, 6};
-	std::vector<int> wL3{5, 6};
-	std::vector<std::vector<int>> wL{wL1, wL2, wL3};
+	std::vector<int> wL{5, 6};
 
 	std::vector<int> pL;
 	pL.push_back(5);

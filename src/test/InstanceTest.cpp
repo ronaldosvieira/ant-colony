@@ -23,9 +23,7 @@ void InstanceTest::testWrongNumItems() {
     int nI = 0;
 	int nK = 3;
 
-	std::vector<int> wL1{5, 6};
-	std::vector<int> wL2{5, 6};
-	std::vector<std::vector<int>> wL{wL1, wL2};
+	std::vector<int> wL{5, 6};
 
 	std::vector<int> pL;
 	pL.push_back(5);
@@ -43,9 +41,7 @@ void InstanceTest::testWrongNumKnapsacks() {
     int nI = 2;
 	int nK = 0;
 
-	std::vector<int> wL1{5, 6};
-	std::vector<int> wL2{5, 6};
-	std::vector<std::vector<int>> wL{wL1, wL2};
+	std::vector<int> wL{5, 6};
 
 	std::vector<int> pL;
 	pL.push_back(5);
@@ -66,8 +62,6 @@ void InstanceTest::testReadFromFile() {
 	testFile << "2 77 6 67 930 3\n";
 	testFile << "6000 6000 4000\n";
 	testFile << "47 774 76 56 59 22\n";
-	testFile << "818 62 42 36 785 29\n";
-	testFile << "834 57 42 39 994 690\n";
 	testFile.close();
 
 	try {
@@ -108,7 +102,7 @@ void InstanceTest::testReadFromWrongFile() {
 	remove("./src/test/instance02.txt");
 }
 
-Instance InstanceTest::initialize(int &nI, int &nK, std::vector<std::vector<int>> &wL,
+Instance InstanceTest::initialize(int &nI, int &nK, std::vector<int> &wL,
 			std::vector<int> &pL, std::vector<int> &cL) {
 	try {
 		return Instance(nI, nK, wL, pL, cL);

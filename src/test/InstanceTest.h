@@ -26,7 +26,7 @@ private:
     void testReadFromNonExistentFile();
     void testReadFromWrongFile();
 
-    Instance initialize(int &nI, int &nK, std::vector<std::vector<int>> &wL,
+    Instance initialize(int &nI, int &nK, std::vector<int> &wL,
 			std::vector<int> &pL, std::vector<int> &cL);
 };
 

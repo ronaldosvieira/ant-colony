@@ -7,7 +7,7 @@
 
 #include "Instance.h"
 
-Instance::Instance(int &numItems, int &numKnapsacks, std::vector<std::vector<int>> &weightList,
+Instance::Instance(int &numItems, int &numKnapsacks, std::vector<int> &weightList,
 		std::vector<int> &profitList, std::vector<int> &capacityList) :
 		numItems(numItems), numKnapsacks(numKnapsacks), weightList(weightList),
 		profitList(profitList), capacityList(capacityList) {
@@ -15,12 +15,7 @@ Instance::Instance(int &numItems, int &numKnapsacks, std::vector<std::vector<int
 	calcNormalizedProfitList();
 
 	if (profitList.size() != numItems) throw std::invalid_argument("Size of profit list not equal to numItems");
-	if (weightList.size() != numKnapsacks) throw std::invalid_argument("Size of weight list not equal to numKnapsacks");
-
-	for (int k = 0; k < this->numKnapsacks; ++k) {
-		if (weightList.at(k).size() != numItems) throw std::invalid_argument("Size of weight list[k] not equal to numItems");
-	}
-
+	if (weightList.size() != numItems) throw std::invalid_argument("Size of weight list not equal to numItems");
 	if (capacityList.size() != numKnapsacks) throw std::invalid_argument("Size of capacity list not equal to numKnapsacks");
 }
 
@@ -86,22 +81,14 @@ Instance::Instance(const std::string fileName) {
 	DEBUG("Reading weightList...\n");
 
 	// read weightList
-	for (int k = 0; k < this->numKnapsacks; ++k) {
-		this->weightList.push_back(std::vector<int>());
-
-		for (int i = 0; i < this->numItems; ++i) {
-			this->weightList.at(k).push_back(all.at(index++));
-		}
-
-		DEBUG("Knapsack" << k << " weightList.at(k).size() = " << this->weightList.at(k).size() << "\n");
-
-		if (this->weightList.at(k).size() != numItems) {
-			throw std::invalid_argument("Size of weight list of a knapsack not equal to numItems");
-		}
+	for (int i = 0; i < this->numItems; ++i) {
+		this->weightList.push_back(all.at(index++));
 	}
 
-	if (this->weightList.size() != numKnapsacks) {
-		throw std::invalid_argument("Size of weight list not equal to numKnapsack");
+	DEBUG("weightList.size() = " << this->weightList.size() << "\n");
+
+	if (this->weightList.size() != numItems) {
+		throw std::invalid_argument("Size of weight list not equal to numItems");
 	}
 
 	DEBUG("Closing file...\n");

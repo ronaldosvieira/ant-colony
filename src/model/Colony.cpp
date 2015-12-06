@@ -77,20 +77,40 @@ std::vector<double> Colony::getPheromoneList() {
 }
 
 Solution Colony::run() {
+	std::vector<long> solValues;
+	Solution bestSol(this->inst);
+	long mean = 0;
+
 	resetPheromoneList();
 
 	for (int i = 0; i < NUM_ITERATIONS; ++i) {
+		DEBUG("#### ITERATION " << i << " ####\n\n");
+
 		iterate();
+
+		solValues = getSolutionValues();
+
+		for (int i = 0; i < this->numAnts; ++i) {
+			if (solValues.at(i) > bestSol.getValue()) {
+				bestSol = this->ants.at(i).getSolution();
+			}
+
+			mean += this->ants.at(i).getValue();
+
+			DEBUG(solValues.at(i) << " ");
+			if ((i + 1) % 20 == 0) DEBUG("\n");
+
+			//DEBUG(this->ants.at(i).getSolution().toString() << " ");
+			//if ((i + 1) % 5 == 0) DEBUG("\n");
+		}
+
+		mean /= this->numAnts;
+
+		DEBUG("\nBest: " << bestSol.getValue() << "\n");
+		DEBUG("Mean: " << mean << "\n\n");
 	}
 
-	std::vector<long> solValues = this->getSolutionValues();
-	int bestIndex = 0;
-
-	for (int i = 0; i < this->numAnts; ++i) {
-		if (solValues.at(i) > solValues.at(bestIndex)) bestIndex = i;
-	}
-
-	return this->ants.at(bestIndex).getSolution();
+	return bestSol;
 }
 
 void Colony::setAlpha(double alpha) {

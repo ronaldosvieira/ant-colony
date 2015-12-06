@@ -32,12 +32,16 @@ public:
 	std::vector<int> profitList;
 	std::vector<int> capacityList;
 
+	std::vector<double> normalizedProfitList;
+
 	Instance(int &numItems, int &numKnapsacks, std::vector<std::vector<int>> &weightList,
 			std::vector<int> &profitList, std::vector<int> &capacityList);
 	Instance(std::string fileName);
 	virtual ~Instance();
+	std::vector<double> getNormalizedProfitList();
 private:
 	void split(const std::string& s, char delim, std::vector<std::string>& v);
+	std::vector<double> calcNormalizedProfitList();
 };
 
 #endif /* INSTANCE_H_ */

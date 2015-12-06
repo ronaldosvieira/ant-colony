@@ -12,6 +12,8 @@ Instance::Instance(int &numItems, int &numKnapsacks, std::vector<std::vector<int
 		numItems(numItems), numKnapsacks(numKnapsacks), weightList(weightList),
 		profitList(profitList), capacityList(capacityList) {
 
+	calcNormalizedProfitList();
+
 	if (profitList.size() != numItems) throw std::invalid_argument("Size of profit list not equal to numItems");
 	if (weightList.size() != numKnapsacks) throw std::invalid_argument("Size of weight list not equal to numKnapsacks");
 
@@ -124,4 +126,25 @@ void Instance::split(const std::string& s, char delim, std::vector<std::string>&
       if (pos == std::string::npos)
          v.push_back(s.substr(i, s.length()));
     }
+}
+
+std::vector<double> Instance::getNormalizedProfitList() {
+	if (this->normalizedProfitList.size() <= 0) calcNormalizedProfitList();
+	return this->normalizedProfitList;
+}
+
+std::vector<double> Instance::calcNormalizedProfitList() {
+	int min = this->profitList.at(0);
+	int max = 0;
+
+	for (int i = 0; i < this->profitList.size(); i++) {
+		if (this->profitList.at(i) < min) min = this->profitList.at(i);
+		if (this->profitList.at(i) > max) max = this->profitList.at(i);
+	}
+
+	max -= min;
+
+	for (int i = 0; i < this->profitList.size(); i++) {
+		this->normalizedProfitList.push_back(1.0 * (this->profitList.at(i) - min) / max);
+	}
 }

@@ -133,3 +133,23 @@ std::vector<double> Instance::calcNormalizedProfitList() {
 		this->normalizedProfitList.push_back(1.0 * (this->profitList.at(i) - min) / max);
 	}
 }
+
+const std::vector<int>& Instance::getCapacityList() const {
+	return capacityList;
+}
+
+int Instance::getNumItems() const {
+	return numItems;
+}
+
+int Instance::getNumKnapsacks() const {
+	return numKnapsacks;
+}
+
+const std::vector<int>& Instance::getProfitList() const {
+	return profitList;
+}
+
+const std::vector<int>& Instance::getWeightList() const {
+	return weightList;
+}

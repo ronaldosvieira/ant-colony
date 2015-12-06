@@ -39,6 +39,13 @@ public:
 	Instance(std::string fileName);
 	virtual ~Instance();
 	std::vector<double> getNormalizedProfitList();
+
+	const std::vector<int>& getCapacityList() const;
+	int getNumItems() const;
+	int getNumKnapsacks() const;
+	const std::vector<int>& getProfitList() const;
+	const std::vector<int>& getWeightList() const;
+
 private:
 	void split(const std::string& s, char delim, std::vector<std::string>& v);
 	std::vector<double> calcNormalizedProfitList();

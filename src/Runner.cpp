@@ -9,6 +9,7 @@
 #include "model/Solution.h"
 #include "model/Ant.h"
 #include "model/Colony.h"
+#include "model/util/InstanceGenerator.h"
 
 #include "cute.h"
 #include "ide_listener.h"
@@ -20,6 +21,7 @@
 #include "test/ColonyTest.h"
 
 #include <iostream>
+#include <ctime>
 
 constexpr auto TEST = 0;
 
@@ -64,21 +66,26 @@ void printResults(std::vector<long> values) {
 }
 
 void run() {
-	Instance sento1 = openInstance("sento1.dat");
+	//Instance sento1 = openInstance("sento1.dat");
+	Instance inst1 = InstanceGenerator::generate(25, 2);
+
 	int numAnts = 100;
 
-	Colony col(sento1, numAnts, 0.5, 1.0, 1.0);
+	Colony col(inst1, numAnts, 0.5, 1.0, 1.0);
 	col.run();
 
 	printResults(col.getSolutionValues());
+
 }
 
 int main(int argc, char **argv) {
+	srand(time(NULL));
+
 	if (TEST) runSuite();
 	else {
 		try {run();}
 		catch (std::exception &e) {
-			std::cout << "deu merda: " << e.what() << "\n";
+			std::cout << "Error: " << e.what() << "\n";
 		}
 	}
 }

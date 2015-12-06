@@ -66,16 +66,20 @@ void printResults(std::vector<long> values) {
 }
 
 void run() {
-	//Instance sento1 = openInstance("sento1.dat");
-	Instance inst1 = InstanceGenerator::generate(25, 2);
+	//Instance inst1 = InstanceGenerator::generate(30, 10);
+	Instance p01("./src/instances/p01.dat");
 
-	int numAnts = 100;
+	//system("pause");
 
-	Colony col(inst1, numAnts, 0.5, 1.0, 1.0);
-	col.run();
+	int numAnts = 50;
 
-	printResults(col.getSolutionValues());
+	Colony col(p01, numAnts, 0.05, 2.0, 1.0);
+	Solution best = col.run();
 
+	//printResults(col.getSolutionValues());
+
+	std::cout << "Really best solution: " << best.getValue() << "\n";
+	std::cout << best.toString() << "\n";
 }
 
 int main(int argc, char **argv) {

@@ -12,6 +12,15 @@
 
 #include "Ant.h"
 
+#define DEBUG_BUILD
+#undef DEBUG_BUILD
+
+#ifdef DEBUG_BUILD
+#  define DEBUG(x) std::cout << x
+#else
+#  define DEBUG(x) do {} while (0)
+#endif
+
 constexpr auto INITIAL_PHEROMONE_VALUE = 1;
 constexpr auto NUM_ITERATIONS = 100;
 

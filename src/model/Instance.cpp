@@ -33,16 +33,18 @@ Instance::Instance(const std::string fileName) {
 	file.open(fileName.c_str());
 	if (!file.is_open()) throw std::invalid_argument("Couldn't open file" + fileName);
 
-	while (!file.eof()) {
-		getline(file, line);
-		split(line, ' ', tokens);
+	DEBUG("File opened!\n");
 
-		for (int i = 0; i < tokens.size(); ++i) {
-			all.push_back(atoi(tokens.at(i).c_str()));
-		}
+	int temp;
+
+	while (file >> temp) {
+		all.push_back(temp);
 	}
 
-	DEBUG("File opened!\n");
+	DEBUG("Closing file...\n");
+
+	file.close();
+
 	DEBUG("Reading numItems and numKnapsacks...\n");
 
 	// read numItems and numKnapsacks
@@ -90,10 +92,6 @@ Instance::Instance(const std::string fileName) {
 	if (this->weightList.size() != numItems) {
 		throw std::invalid_argument("Size of weight list not equal to numItems");
 	}
-
-	DEBUG("Closing file...\n");
-
-	file.close();
 
 	DEBUG("Done!\n\n");
 }

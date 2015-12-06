@@ -10,6 +10,7 @@
 #include "model/Ant.h"
 #include "model/Colony.h"
 #include "model/util/InstanceGenerator.h"
+#include "model/util/ColonyTuner.h"
 
 #include "cute.h"
 #include "ide_listener.h"
@@ -73,7 +74,10 @@ void run() {
 
 	int numAnts = 50;
 
-	Colony col(p01, numAnts, 0.05, 2.0, 1.0);
+	//Colony col(p01, numAnts, 0.05, 2.0, 1.0);
+	ColonyTuner cT(p01, numAnts);
+	Colony col = cT.test();
+
 	Solution best = col.run();
 
 	//printResults(col.getSolutionValues());

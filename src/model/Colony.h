@@ -22,7 +22,7 @@
 #endif
 
 constexpr auto INITIAL_PHEROMONE_VALUE = 1;
-constexpr auto NUM_ITERATIONS = 100;
+constexpr auto NUM_ITERATIONS = 50;
 
 class Colony {
 private:
@@ -34,7 +34,7 @@ private:
 	std::vector<double> pheromoneList;
 
 	std::vector<Ant> ants;
-	Instance inst;
+	Instance &inst;
 
 	void populate();
 	void iterate();
@@ -43,7 +43,7 @@ private:
 
 	void resetPheromoneList();
 public:
-	Colony(Instance inst, int numAnts, double evaporationRatio = 0.5,
+	Colony(Instance &inst, int numAnts, double evaporationRatio = 0.5,
 			double alpha = 1.0, double beta = 1.0);
 	Solution run();
 	std::vector<long> getSolutionValues();

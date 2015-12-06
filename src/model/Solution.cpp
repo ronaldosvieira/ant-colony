@@ -7,7 +7,7 @@
 
 #include "Solution.h"
 
-Solution::Solution(Instance inst) : inst(inst), remainingCapacityList(this->inst.capacityList) {
+Solution::Solution(Instance &inst) : inst(inst), remainingCapacityList(this->inst.capacityList) {
 	empty();
 }
 
@@ -21,6 +21,14 @@ void Solution::empty() {
 	for (int i = 0; i < this->inst.numItems; ++i) {
 		solution.push_back(-1);
 	}
+}
+
+Solution& Solution::operator=(const Solution &s ) {
+	this->inst = s.inst;
+	this->solution = s.solution;
+	this->remainingCapacityList = s.remainingCapacityList;
+
+	return *this;
 }
 
 std::vector<int> Solution::getRawSolution() {

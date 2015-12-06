@@ -14,12 +14,14 @@
 class Solution {
 private:
 	std::vector<int> solution;
-	Instance inst;
+	Instance &inst;
 
 	std::vector<int> remainingCapacityList;
 public:
-	Solution(Instance inst);
+	Solution(Instance &inst);
 	virtual ~Solution();
+	Solution& operator=(const Solution &s);
+
 	void empty();
 	void update(int item, int knapsack);
 

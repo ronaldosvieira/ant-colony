@@ -19,7 +19,7 @@ class Ant {
 private:
 	Solution solution;
 
-	Instance inst;
+	Instance &inst;
 	std::vector<double> &pheromoneList;
 
 	double &alpha, &beta;
@@ -27,7 +27,7 @@ private:
 	bool findSolution();
 	double calcProbability(int i, int k);
 public:
-	Ant(Instance inst, std::vector<double> &pheromoneList,
+	Ant(Instance &inst, std::vector<double> &pheromoneList,
 			double &alpha, double &beta);
 	virtual ~Ant();
 

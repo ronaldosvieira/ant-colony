@@ -58,6 +58,7 @@ Colony ColonyTest::initialize(int numAnts,
 	std::vector<int> pL{5, 6};
 	std::vector<int> cL{7, 7};
 
-	return Colony(Instance(nI, nK, wL, pL, cL),
-			numAnts, evaporationRatio, alfa, beta);
+	Instance inst(nI, nK, wL, pL, cL);
+
+	return Colony(inst, numAnts, evaporationRatio, alfa, beta);
 }

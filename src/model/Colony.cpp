@@ -7,7 +7,7 @@
 
 #include "Colony.h"
 
-Colony::Colony(Instance inst, int numAnts, double evaporationRatio, double alpha , double beta) :
+Colony::Colony(Instance &inst, int numAnts, double evaporationRatio, double alpha , double beta) :
 	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alpha(alpha), beta(beta) {
 	srand(time(NULL));
 	resetPheromoneList();

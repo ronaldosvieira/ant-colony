@@ -8,7 +8,8 @@
 #include "Colony.h"
 
 Colony::Colony(Instance &inst, int numAnts, double evaporationRatio, double alpha , double beta) :
-	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alpha(alpha), beta(beta) {
+	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alpha(alpha), beta(beta),
+	pheromoneList(inst.numKnapsacks) {
 	srand(time(NULL));
 	resetPheromoneList();
 	populate();
@@ -25,8 +26,10 @@ void Colony::populate() {
 }
 
 void Colony::evaporate() {
-	for (int i = 0; i < this->pheromoneList.size(); ++i) {
-		this->pheromoneList[i] *= (1 - this->evaporationRatio);
+	for (int k = 0; k < this->pheromoneList.size(); ++k) {
+		for (int i = 0; i < this->pheromoneList.at(k).size(); ++i) {
+			this->pheromoneList[k][i] *= (1 - this->evaporationRatio);
+		}
 	}
 }
 
@@ -39,17 +42,22 @@ void Colony::reinforce() {
 	}
 
 	//for (int a = 0; a < this->numAnts; ++a) {
-	for (int i = 0; i < this->inst.numItems; ++i) {
-		if (this->ants.at(bestAnt).getSolution().isSelected(i)) {
-			this->pheromoneList[i] += 1 + (this->inst.profitList.at(i) / this->ants.at(bestAnt).getValue());
+	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
+		for (int i = 0; i < this->inst.numItems; ++i) {
+			if (this->ants.at(bestAnt).getSolution().isSelected(i, k)) {
+				//this->pheromoneList[i] += 1 + (this->inst.profitList.at(i) / this->ants.at(bestAnt).getValue());
+				this->pheromoneList[k][i] += (1 - this->evaporationRatio);// * this->ants.at(bestAnt).getValue();// * this->inst.profitList.at(i);
+			}
 		}
 	}
 	//}
 }
 
 void Colony::resetPheromoneList() {
-	for (int i = 0; i < this->inst.numItems; ++i) {
-		pheromoneList.push_back(INITIAL_PHEROMONE_VALUE);
+	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
+		for (int i = 0; i < this->inst.numItems; ++i) {
+			pheromoneList.at(k).push_back(INITIAL_PHEROMONE_VALUE);
+		}
 	}
 }
 
@@ -72,7 +80,7 @@ std::vector<long> Colony::getSolutionValues() {
 	return solValues;
 }
 
-std::vector<double> Colony::getPheromoneList() {
+std::vector<std::vector<double>> Colony::getPheromoneList() {
 	return this->pheromoneList;
 }
 

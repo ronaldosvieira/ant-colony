@@ -31,7 +31,7 @@ private:
 	double alpha;
 	double beta;
 
-	std::vector<double> pheromoneList;
+	std::vector<std::vector<double>> pheromoneList;
 
 	std::vector<Ant> ants;
 	Instance &inst;
@@ -47,7 +47,7 @@ public:
 			double alpha = 1.0, double beta = 1.0);
 	Solution run();
 	std::vector<long> getSolutionValues();
-	std::vector<double> getPheromoneList();
+	std::vector<std::vector<double>> getPheromoneList();
 	void setAlpha(double alpha);
 	void setBeta(double beta);
 	void setEvaporationRatio(double evaporationRatio);

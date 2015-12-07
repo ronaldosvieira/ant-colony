@@ -20,14 +20,14 @@ private:
 	Solution solution;
 
 	Instance &inst;
-	std::vector<double> &pheromoneList;
+	std::vector<std::vector<double>> &pheromoneList;
 
 	double &alpha, &beta;
 
 	bool findSolution();
 	double calcProbability(int i, int k);
 public:
-	Ant(Instance &inst, std::vector<double> &pheromoneList,
+	Ant(Instance &inst, std::vector<std::vector<double>> &pheromoneList,
 			double &alpha, double &beta);
 	virtual ~Ant();
 

@@ -55,9 +55,13 @@ void AntTest::testIterate() {
 
 	Instance inst(nI, nK, wL, pL, cL);
 
-	std::vector<double> pheromoneList;
-	pheromoneList.push_back(0.5);
-	pheromoneList.push_back(0.5);
+	std::vector<std::vector<double>> pheromoneList;
+	pheromoneList.at(0).push_back(0.5);
+	pheromoneList.at(0).push_back(0.5);
+	pheromoneList.at(1).push_back(0.5);
+	pheromoneList.at(1).push_back(0.5);
+	pheromoneList.at(2).push_back(0.5);
+	pheromoneList.at(2).push_back(0.5);
 
 	double alpha = 1.0;
 	double beta = 1.0;
@@ -85,9 +89,13 @@ Ant AntTest::initialize() {
 
 	Instance inst(nI, nK, wL, pL, cL);
 
-	std::vector<double> pheromoneList;
-	pheromoneList.push_back(0.5);
-	pheromoneList.push_back(0.5);
+	std::vector<std::vector<double>> pheromoneList;
+	pheromoneList.at(0).push_back(0.5);
+	pheromoneList.at(0).push_back(0.5);
+	pheromoneList.at(1).push_back(0.5);
+	pheromoneList.at(1).push_back(0.5);
+	pheromoneList.at(2).push_back(0.5);
+	pheromoneList.at(2).push_back(0.5);
 
 	double alpha = 1.0;
 	double beta = 1.0;

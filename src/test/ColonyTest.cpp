@@ -30,10 +30,12 @@ void ColonyTest::testGetSolutionValues() {
 void ColonyTest::testResetPheromoneList() {
 	Colony col = initialize();
 
-	std::vector<double> phL = col.getPheromoneList();
+	std::vector<std::vector<double>> phL = col.getPheromoneList();
 
-	for (int i = 0; i < phL.size(); ++i) {
-		ASSERT_EQUAL(INITIAL_PHEROMONE_VALUE, phL.at(i));
+	for (int k = 0; k < phL.size(); ++k) {
+		for (int i = 0; i < phL.at(k).size(); ++i) {
+			ASSERT_EQUAL(INITIAL_PHEROMONE_VALUE, phL.at(k).at(i));
+		}
 	}
 }
 

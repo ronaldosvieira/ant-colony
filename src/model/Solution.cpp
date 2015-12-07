@@ -65,6 +65,10 @@ bool Solution::isSelected(int item) {
 	return this->solution.at(item) != -1;
 }
 
+bool Solution::isSelected(int item, int knapsack) {
+	return this->solution.at(item) == knapsack;
+}
+
 std::string Solution::toString() {
 	std::string solStr = "";
 

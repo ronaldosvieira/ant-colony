@@ -31,6 +31,7 @@ public:
 
 	bool isValidUpdate(int item, int knapsack);
 	bool isSelected(int item);
+	bool isSelected(int item, int knapsack);
 
 	std::string toString();
 };

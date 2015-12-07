@@ -31,7 +31,7 @@ public:
 	InstanceGenerator();
 	virtual ~InstanceGenerator();
 
-	Instance generate(std::string fileName, int numItems, int numKnapsacks) {
+	static Instance generate(std::string fileName, int numItems, int numKnapsacks) {
 		rand(); rand();
 
 		std::vector<int> wL;
@@ -93,7 +93,7 @@ public:
 	}
 
 private:
-	void saveToFile(Instance &inst, std::string fileName) {
+	static void saveToFile(Instance &inst, std::string fileName) {
 		std::ofstream file;
 
 		DEBUG("\n");

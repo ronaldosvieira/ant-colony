@@ -28,7 +28,7 @@ void Colony::populate() {
 void Colony::evaporate() {
 	for (int k = 0; k < this->pheromoneList.size(); ++k) {
 		for (int i = 0; i < this->pheromoneList.at(k).size(); ++i) {
-			this->pheromoneList[k][i] *= (1 - this->evaporationRatio);
+			this->pheromoneList[k][i] *= this->evaporationRatio;
 		}
 	}
 }

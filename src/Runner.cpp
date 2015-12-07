@@ -67,23 +67,40 @@ void printResults(std::vector<long> values) {
 }
 
 void run() {
-	//Instance inst1 = InstanceGenerator::generate(30, 10);
-	Instance p01("./src/instances/p01.dat");
+	InstanceGenerator ig;
+	//Instance inst1 = ig.generate("./src/instances/test", 25, 3);
+	//Instance inst1("./src/instances/p04.dat");
+
+	std::vector<int> items{25, 50, 100, 200};
+	std::vector<int> knaps{2, 3, 4};
+	std::stringstream path;
+
+	for (int k = 0; k < knaps.size(); ++k) {
+		for (int it = 0; it < items.size(); ++it) {
+			for (int in = 0; in < 20; ++in) {
+				path.clear();
+				path.str(std::string());
+				path << "./src/instances/" << knaps.at(k) << "k"
+						<< items.at(it) << "i_" << (in + 1) << ".dat";
+				ig.generate(path.str(), items.at(it), knaps.at(k));
+			}
+		}
+	}
 
 	//system("pause");
 
-	int numAnts = 50;
+	//int numAnts = 100;
 
-	//Colony col(p01, numAnts, 0.05, 2.0, 1.0);
-	ColonyTuner cT(p01, numAnts);
-	Colony col = cT.test();
+	//Colony col(inst1, numAnts, 0.05, 1.0, 1.0);
+	//ColonyTuner cT(inst1, numAnts);
+	//Colony col = cT.test();
 
-	Solution best = col.run();
+	//Solution best = col.run();
 
 	//printResults(col.getSolutionValues());
 
-	std::cout << "Really best solution: " << best.getValue() << "\n";
-	std::cout << best.toString() << "\n";
+	//std::cout << "Best solution: " << best.getValue() << "\n";
+	//std::cout << best.toString() << "\n";
 }
 
 int main(int argc, char **argv) {

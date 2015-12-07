@@ -9,7 +9,7 @@
 #define SRC_INSTANCES_INSTANCEGENERATOR_H_
 
 #define DEBUG_BUILD
-//#undef DEBUG_BUILD
+#undef DEBUG_BUILD
 
 #ifdef DEBUG_BUILD
 #define DEBUG(x) std::cout << x
@@ -20,6 +20,8 @@
 #include "../Instance.h"
 
 #include <cmath>
+#include <fstream>
+#include <iostream>
 
 constexpr auto UNIFORM_MIN = 10;
 constexpr auto UNIFORM_MAX = 100;
@@ -29,7 +31,7 @@ public:
 	InstanceGenerator();
 	virtual ~InstanceGenerator();
 
-	static Instance generate(int numItems, int numKnapsacks) {
+	Instance generate(std::string fileName, int numItems, int numKnapsacks) {
 		rand(); rand();
 
 		std::vector<int> wL;
@@ -83,7 +85,52 @@ public:
 		}
 		DEBUG("\n\n");
 
-		return Instance(numItems, numKnapsacks, wL, pL, cL);
+		Instance result(numItems, numKnapsacks, wL, pL, cL);
+
+		saveToFile(result, fileName);
+
+		return result;
+	}
+
+private:
+	void saveToFile(Instance &inst, std::string fileName) {
+		std::ofstream file;
+
+		DEBUG("\n");
+		DEBUG("Opening file " << fileName << "...\n");
+
+		file.open(fileName.c_str());
+		if (!file.is_open()) throw std::invalid_argument("Couldn't open file" + fileName);
+
+		DEBUG("File opened!\n");
+		DEBUG("Writing...\n");
+
+		file << inst.getNumKnapsacks() << " ";
+		file << inst.getNumItems() << "\n";
+
+		for (int i = 0; i < inst.getNumItems(); ++i) {
+			file << inst.getProfitList().at(i) << " ";
+		}
+
+		file << "\n";
+
+		for (int i = 0; i < inst.getNumKnapsacks(); ++i) {
+			file << inst.getCapacityList().at(i) << " ";
+		}
+
+		file << "\n";
+
+		for (int i = 0; i < inst.getNumItems(); ++i) {
+			file << inst.getWeightList().at(i) << " ";
+		}
+
+		file << "\n";
+
+		DEBUG("Done! Closing file...\n");
+
+		file.close();
+
+		DEBUG("File closed!\n\n");
 	}
 };
 

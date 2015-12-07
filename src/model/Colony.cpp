@@ -30,7 +30,7 @@ void Colony::evaporate() {
 	}
 }
 
-void Colony::updatePheromoneList() {
+void Colony::reinforce() {
 	int bestAnt = 0;
 	for (int a = 0; a < this->numAnts; ++a) {
 		if (this->ants.at(a).getValue() > this->ants.at(bestAnt).getValue()) {
@@ -59,7 +59,7 @@ void Colony::iterate() {
 	}
 
 	evaporate();
-	updatePheromoneList();
+	reinforce();
 }
 
 std::vector<long> Colony::getSolutionValues() {

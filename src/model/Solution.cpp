@@ -61,31 +61,6 @@ long Solution::getValue() {
 	return value;
 }
 
-bool Solution::isValid() {
-	long totalWeightList[inst.numKnapsacks];
-	int i;
-
-	for (i = 0; i < inst.numKnapsacks; i++) {
-		totalWeightList[i] = 0;
-	}
-
-	for (int k = 0; k < inst.numKnapsacks; k++) {
-		for (i = 0; i < inst.numItems; i++) {
-			if (solution[i] != -1) {
-				totalWeightList[solution[i]] += inst.weightList[i];
-			}
-		}
-	}
-
-	for (i = 0; i < inst.numKnapsacks; ++i) {
-		if (totalWeightList[i] > inst.capacityList[i]) {
-			return false;
-		}
-	}
-
-	return true;
-}
-
 bool Solution::isSelected(int item) {
 	return this->solution.at(item) != -1;
 }

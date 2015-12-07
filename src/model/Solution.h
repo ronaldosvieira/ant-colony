@@ -29,7 +29,6 @@ public:
 	std::vector<int> getRawSolution();
 	std::vector<int> getRemainingCapacityList();
 
-	bool isValid();
 	bool isValidUpdate(int item, int knapsack);
 	bool isSelected(int item);
 

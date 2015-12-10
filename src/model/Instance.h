@@ -32,6 +32,8 @@ public:
 	std::vector<int> profitList;
 	std::vector<int> capacityList;
 
+	long optimal;
+
 	std::vector<double> normalizedProfitList;
 
 	Instance(int &numItems, int &numKnapsacks, std::vector<int> &weightList,
@@ -43,6 +45,7 @@ public:
 	const std::vector<int>& getCapacityList() const;
 	int getNumItems() const;
 	int getNumKnapsacks() const;
+	long getOptimal() const;
 	const std::vector<int>& getProfitList() const;
 	const std::vector<int>& getWeightList() const;
 

@@ -93,6 +93,13 @@ Instance::Instance(const std::string fileName) {
 		throw std::invalid_argument("Size of weight list not equal to numItems");
 	}
 
+	try {
+		DEBUG("Reading optimal...\n");
+		this->optimal = all.at(index);
+	} catch (std::exception &e) {
+		DEBUG("Optimal value not informed\n");
+	}
+
 	DEBUG("Done!\n\n");
 }
 
@@ -144,6 +151,10 @@ int Instance::getNumItems() const {
 
 int Instance::getNumKnapsacks() const {
 	return numKnapsacks;
+}
+
+long Instance::getOptimal() const {
+	return optimal;
 }
 
 const std::vector<int>& Instance::getProfitList() const {

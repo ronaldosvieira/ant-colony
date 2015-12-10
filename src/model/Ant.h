@@ -34,6 +34,7 @@ public:
 	void iterate();
 	long getValue();
 	Solution getSolution();
+	void setPheromoneList(std::vector<std::vector<double>> &phL);
 };
 
 #endif /* ANT_H_ */

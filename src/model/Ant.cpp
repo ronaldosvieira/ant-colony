@@ -104,3 +104,7 @@ long Ant::getValue() {
 Solution Ant::getSolution() {
 	return this->solution;
 }
+
+void Ant::setPheromoneList(std::vector<std::vector<double>> &phL) {
+	this->pheromoneList = phL;
+}

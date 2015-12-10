@@ -11,8 +11,8 @@ Colony::Colony(Instance &inst, int numAnts, double evaporationRatio, double alph
 	inst(inst), numAnts(numAnts), evaporationRatio(evaporationRatio), alpha(alpha), beta(beta),
 	pheromoneList(inst.numKnapsacks) {
 	srand(time(NULL));
-	resetPheromoneList();
 	populate();
+	resetPheromoneList();
 }
 
 Colony::~Colony() {
@@ -54,10 +54,15 @@ void Colony::reinforce() {
 }
 
 void Colony::resetPheromoneList() {
+	pheromoneList = std::vector<std::vector<double>>(inst.numKnapsacks);
 	for (int k = 0; k < this->inst.numKnapsacks; ++k) {
 		for (int i = 0; i < this->inst.numItems; ++i) {
 			pheromoneList.at(k).push_back(INITIAL_PHEROMONE_VALUE);
 		}
+	}
+
+	for (int a = 0; a < this->numAnts; ++a) {
+		this->ants.at(a).setPheromoneList(this->pheromoneList);
 	}
 }
 

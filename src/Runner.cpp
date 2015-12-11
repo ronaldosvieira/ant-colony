@@ -63,35 +63,58 @@ void printResults(std::vector<long> values) {
 	mean /= values.size();
 
 	std::cout << "\nBest: " << best << "\n";
-	std::cout << "Mean: " << mean << "\n";
+	std::cout << "Mean: " << mean << "\n\n";
 }
 
-void run() {
-	InstanceGenerator ig;
-	//Instance inst1 = ig.generate("./src/instances/test", 25, 3);
-	//Instance inst1("./src/instances/p04.dat");
-
-	std::vector<int> items{25, 50, 100, 200};
-	std::vector<int> knaps{2, 3, 4};
+void generateInstances() {
+	std::vector<int> items { 25, 50, 100, 200 };
+	std::vector<int> knaps { 2, 3, 4 };
 	std::stringstream path;
-
 	for (int k = 0; k < knaps.size(); ++k) {
 		for (int it = 0; it < items.size(); ++it) {
 			for (int in = 0; in < 20; ++in) {
 				path.clear();
 				path.str(std::string());
-				path << "./src/instances/" << knaps.at(k) << "k"
-						<< items.at(it) << "i_" << (in + 1) << ".dat";
-				ig.generate(path.str(), items.at(it), knaps.at(k));
+				path << "./src/instances/weakly_correlated/" << knaps.at(k)
+						<< "k" << items.at(it) << "i_" << (in + 1) << ".dat";
+				InstanceGenerator::generate(path.str(), items.at(it), knaps.at(k), 1, 1);
 			}
 		}
 	}
+}
 
-	//system("pause");
+void getStats(Colony &col, int amount, long optimal) {
+	int foundOptimal = 0;
 
-	//int numAnts = 100;
+	for (int i = 0; i < amount; ++i) {
+		Solution best = col.run();
 
-	//Colony col(inst1, numAnts, 0.05, 1.0, 1.0);
+		if (best.getValue() == optimal) foundOptimal++;
+
+		std::cout << "Run " << i << ": " << best.getValue() << std::endl;
+	}
+
+	std::cout << "Found optimal " << 100.0 * foundOptimal / amount
+			<< "% of the " << amount << " runs. (" << foundOptimal
+			<< "/" << amount << ")" << std::endl;
+}
+
+void run() {
+	//Instance inst1 = InstanceGenerator::generate("./src/instances/test", 25, 3, 0, 0);
+
+	//generateInstances();
+
+	int numAnts = 100;
+
+	std::string path = "./src/instances/weakly_correlated/10k25i.dat";
+	Instance inst = InstanceGenerator::generate(path, 25, 10, 1, 1);
+
+	system("pause");
+
+	//Instance inst(path);
+	Colony col(inst, numAnts, 0.95, 2.0, 1.0);
+	getStats(col, 10, inst.getOptimal());
+
 	//ColonyTuner cT(inst1, numAnts);
 	//Colony col = cT.test();
 
@@ -99,7 +122,8 @@ void run() {
 
 	//printResults(col.getSolutionValues());
 
-	//std::cout << "Best solution: " << best.getValue() << "\n";
+	//std::cout << "Best solution found: " << best.getValue() << "\n";
+	//std::cout << "Optimal value: " << inst.getOptimal() << "\n";
 	//std::cout << best.toString() << "\n";
 }
 

@@ -107,11 +107,9 @@ void run() {
 	int numAnts = 100;
 
 	std::string path = "./src/instances/weakly_correlated/10k25i.dat";
-	Instance inst = InstanceGenerator::generate(path, 25, 10, 1, 1);
+	//Instance inst = InstanceGenerator::generate(path, 25, 10, 1, 1);
 
-	system("pause");
-
-	//Instance inst(path);
+	Instance inst(path);
 	Colony col(inst, numAnts, 0.95, 2.0, 1.0);
 	getStats(col, 10, inst.getOptimal());
 
